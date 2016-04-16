@@ -38,7 +38,7 @@ static void dump(void *buffer, int size, const char *file, int line, const char 
                 c = (unsigned char)string[offset + col];
                 fprintf(logfile, "%02x ", c & 0xff);
 
-                if (c > 32 && c < 128) {
+                if (c >= 32 && c < 127) {
                     ascii[col >= 8 ? col + 1 : col] = c;
                 } else {
                     ascii[col >= 8 ? col + 1 : col] = '.';
