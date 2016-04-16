@@ -1,12 +1,25 @@
-#include "debug.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "debug.h"
+#include "dump.h"
 
 void testDebug()
 {
     DEBUG("This is a debug message.");
     DEBUG("__FILE__ %s", __FILE__);
     DEBUG("__LINE__ %d", __LINE__);
+}
+
+void testDump()
+{
+    char data[256];
+    int i;
+
+    for (i = 0; i < 256; i++) {
+        data[i] = i;
+    }
+
+    DUMP(data, 256);
 }
 
 void testLogError()
@@ -146,6 +159,9 @@ int main(int argc, char *argv[])
 {
     printf("\n== TEST DEBUG ==\n");
     testDebug();
+
+    printf("\n== TEST DUMP ==\n");
+    testDump();
 
     printf("\n== TEST LOG_ERROR ==\n");
     testLogError();
