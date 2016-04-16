@@ -8,11 +8,14 @@
 #define DUMP(B, S) dump(B, S, __FILE__, __LINE__, __FUNCTION__)
 #endif
 
-#define DEBUG_LOG_FILENAME "dahbug.log"
-
 static void dump(void *buffer, int size, const char *file, int line, const char *func)
 {
-    FILE *logfile = fopen(DEBUG_LOG_FILENAME, "a");
+    FILE *logfile;
+#ifdef DEBUG_LOG_FILENAME
+    logfile = fopen(DEBUG_LOG_FILENAME, "a");
+#else
+    logfile = stderr;
+#endif
     char *string = (char *)buffer;
     int offset, col;
     char c;
@@ -53,6 +56,9 @@ static void dump(void *buffer, int size, const char *file, int line, const char 
 
     fprintf(logfile, "\n");
     fflush(logfile);
-    fclose(logfile);
+
+    if (logfile != stderr) {
+        fclose(logfile);
+    }
 }
 #endif
