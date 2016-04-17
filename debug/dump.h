@@ -23,10 +23,18 @@ static void dump(void *buffer, size_t size, const char *file, int line, const ch
 
     offset = 0;
 
-    fprintf(logfile, "in file %s:%d %s(...) - dump of %zu bytes\n", file, line, func, size);
+    fprintf(
+        logfile,
+        "[DEBUG] %s (%s:%d %s) - dump of %zu bytes\n\n",
+        getTimestampString(),
+        file,
+        line,
+        func,
+        size
+    );
 
     while (offset < size) {
-        fprintf(logfile, "%04" PRIxFAST32 ": ", offset);
+        fprintf(logfile, "  %04" PRIxFAST32 ": ", offset);
 
         for (col = 0; col < 16; col++) {
             if (col == 8) {
