@@ -5,7 +5,7 @@
 #include <string.h>
 #include <time.h>
 
-char __timestamp_string[20] = {0};
+static char __timestamp_string[20] = {0};
 
 static inline char *getTimestampString()
 {
