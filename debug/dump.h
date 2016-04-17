@@ -1,6 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include <inttypes.h>
+#include "timestamp.h"
 
 #ifdef NDEBUG
 #define DUMP(B, S)

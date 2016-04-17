@@ -4,7 +4,6 @@
 #include <errno.h>
 #include <string.h>
 #include "timestamp.h"
-#include "dump.h"
 
 #define clean_errno() (errno == 0 ? "None" : strerror(errno))
 
