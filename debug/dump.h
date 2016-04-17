@@ -6,7 +6,6 @@
 #define DUMP(B, S)
 #else
 #define DUMP(B, S) dump(B, S, __FILE__, __LINE__, __FUNCTION__)
-#endif
 
 static void dump(void *buffer, size_t size, const char *file, int line, const char *func)
 {
@@ -69,3 +68,4 @@ static void dump(void *buffer, size_t size, const char *file, int line, const ch
         fclose(logfile);
     }
 }
+#endif
