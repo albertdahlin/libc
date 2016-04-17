@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 #include "debug.h"
 #include "dump.h"
 
@@ -12,12 +13,13 @@ void testDebug()
 
 void testDump()
 {
-    char data[256];
-    int i;
+    uint8_t data[256];
+    uint8_t i = 0;
 
-    for (i = 0; i < 256; i++) {
+    do {
         data[i] = i;
-    }
+        i += 1;
+    } while (i != 0);
 
     DUMP(data, 256);
 }

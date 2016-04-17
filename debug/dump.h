@@ -1,6 +1,6 @@
-#ifndef __dump_h__
-#define __dump_h__
+#pragma once
 #include <stdio.h>
+#include <stdint.h>
 
 #ifdef NDEBUG
 #define DUMP(B, S)
@@ -8,25 +8,25 @@
 #define DUMP(B, S) dump(B, S, __FILE__, __LINE__, __FUNCTION__)
 #endif
 
-static void dump(void *buffer, int size, const char *file, int line, const char *func)
+static void dump(void *buffer, size_t size, const char *file, int line, const char *func)
 {
     FILE *logfile;
-#ifdef DEBUG_LOG_FILENAME
+    #ifdef DEBUG_LOG_FILENAME
     logfile = fopen(DEBUG_LOG_FILENAME, "a");
-#else
+    #else
     logfile = stderr;
-#endif
-    char *string = (char *)buffer;
-    int offset, col;
-    char c;
-    char ascii[18];
+    #endif
+    uint8_t *string = (uint8_t *)buffer;
+    uint_fast32_t offset, col;
+    uint8_t c;
+    uint8_t ascii[18];
 
     offset = 0;
 
-    fprintf(logfile, "in file %s:%d %s(...) - dump of %d bytes\n", file, line, func, size);
+    fprintf(logfile, "in file %s:%d %s(...) - dump of %zu bytes\n", file, line, func, size);
 
     while (offset < size) {
-        fprintf(logfile, "%04x: ", offset);
+        fprintf(logfile, "%04X: ", (unsigned int)offset);
 
         for (col = 0; col < 16; col++) {
             if (col == 8) {
@@ -35,7 +35,7 @@ static void dump(void *buffer, int size, const char *file, int line, const char 
             }
 
             if (offset + col < size) {
-                c = (unsigned char)string[offset + col];
+                c = (uint8_t)string[offset + col];
                 fprintf(logfile, "%02x ", c & 0xff);
 
                 if (c >= 32 && c < 127) {
@@ -61,4 +61,3 @@ static void dump(void *buffer, int size, const char *file, int line, const char 
         fclose(logfile);
     }
 }
-#endif

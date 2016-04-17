@@ -1,5 +1,4 @@
-#ifndef __debug_h__
-#define __debug_h__
+#pragma once
 
 #include <stdio.h>
 #include <errno.h>
@@ -75,4 +74,3 @@
     } \
 
 #define CHECK_MEM(A) CHECK((A), "Could not allocate memory.")
-#endif
