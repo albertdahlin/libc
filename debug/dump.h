@@ -1,6 +1,6 @@
 #pragma once
 #include <stdio.h>
-#include <stdint.h>
+#include <inttypes.h>
 
 #ifdef NDEBUG
 #define DUMP(B, S)
@@ -26,7 +26,7 @@ static void dump(void *buffer, size_t size, const char *file, int line, const ch
     fprintf(logfile, "in file %s:%d %s(...) - dump of %zu bytes\n", file, line, func, size);
 
     while (offset < size) {
-        fprintf(logfile, "%04X: ", (unsigned int)offset);
+        fprintf(logfile, "%04" PRIxFAST32 ": ", offset);
 
         for (col = 0; col < 16; col++) {
             if (col == 8) {
@@ -35,8 +35,8 @@ static void dump(void *buffer, size_t size, const char *file, int line, const ch
             }
 
             if (offset + col < size) {
-                c = (uint8_t)string[offset + col];
-                fprintf(logfile, "%02x ", c & 0xff);
+                c = string[offset + col];
+                fprintf(logfile, "%02" PRIx8 " ", c);
 
                 if (c >= 32 && c < 127) {
                     ascii[col >= 8 ? col + 1 : col] = c;

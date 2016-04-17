@@ -68,7 +68,7 @@ FILE *testCheckGetFile(char *filename)
     return NULL;
 }
 
-int testCheck(char *filename)
+void testCheck(char *filename)
 {
     FILE *file;
 
@@ -79,10 +79,10 @@ int testCheck(char *filename)
     printf("Successfully opened file: %s\n", filename);
     fclose(file);
 
-    return 1;
+    return;
 
     error:
-    return 0;
+    return;
 }
 
 int testSentinelDoSomething(int code)
@@ -101,11 +101,10 @@ int testSentinelDoSomething(int code)
     return 1;
 
     error:
-
     return -1;
 }
 
-int testSentinel(int code)
+void testSentinel(int code)
 {
     int result;
 
@@ -114,14 +113,13 @@ int testSentinel(int code)
 
     printf("Everything is fine\n");
 
-    return 0;
+    return;
 
     error:
-
-    return -1;
+    return;
 }
 
-int testCheckMem(int code)
+void testCheckMem(int code)
 {
     char *pointer;
 
@@ -139,23 +137,21 @@ int testCheckMem(int code)
     printf("Memory successfully allocated\n");
     free(pointer);
 
-    return 0;
+    return;
 
     error:
-
-    return -1;
+    return;
 }
 
-int testCheckDebug(int code)
+void testCheckDebug(int code)
 {
     CHECK_DEBUG(code == 1, "Code is not 1");
     printf("Code was 1\n");
 
-    return 0;
+    return;
 
     error:
-
-    return -1;
+    return;
 }
 
 int main(int argc, char *argv[])
