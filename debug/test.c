@@ -77,6 +77,7 @@ int testCheck(char *filename)
     CHECK(file, "Could not open file.");
 
     printf("Successfully opened file: %s\n", filename);
+    fclose(file);
 
     return 1;
 
