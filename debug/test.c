@@ -154,7 +154,7 @@ void testCheckDebug(int code)
     return;
 }
 
-int main(int argc, char *argv[])
+int main()
 {
     printf("\n== TEST DEBUG ==\n");
     testDebug();
