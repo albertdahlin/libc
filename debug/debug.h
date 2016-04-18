@@ -5,7 +5,7 @@
 #include <string.h>
 #include "timestamp.h"
 
-#define clean_errno() (errno == 0 ? "None" : strerror(errno))
+#define CLEAN_ERRNO() (errno == 0 ? "None" : strerror(errno))
 
 #ifdef NDEBUG
 #define DEBUG(M, ...)
@@ -30,7 +30,7 @@
         __FILE__, \
         __LINE__, \
         __FUNCTION__, \
-        clean_errno(), \
+        CLEAN_ERRNO(), \
         ##__VA_ARGS__ \
     )
 
@@ -42,7 +42,7 @@
         __FILE__, \
         __LINE__, \
         __FUNCTION__, \
-        clean_errno(), \
+        CLEAN_ERRNO(), \
         ##__VA_ARGS__ \
     )
 
