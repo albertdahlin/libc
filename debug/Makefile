@@ -1,10 +1,11 @@
-CFLAGS=-g -Wall
+CFLAGS=-g -Wall -Wextra
 
-all: clean
-	cc test.c -o test
+all: clean test
 
-ndebug: clean
-	cc test.c -o test -DNDEBUG
+build: ndebug
+
+ndebug: CFLAGS= -DNDEBUG
+ndebug: all
 
 clean:
 	rm -f test
