@@ -1,11 +1,15 @@
-CFLAGS=-g -Wall -Wextra
+APP = test
 
-all: clean test
+.ifmake dist
+  CFLAGS += -DNDEBUG
+.else
+  CFLAGS +=-g -Wall -Wextra
+.endif
 
-build: ndebug
+all: clean $(APP)
 
-ndebug: CFLAGS= -DNDEBUG
-ndebug: all
+dev: all
+dist: all
 
 clean:
-	rm -f test
+	rm -f $(APP)
